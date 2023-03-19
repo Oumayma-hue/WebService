@@ -1,0 +1,46 @@
+<main class="mat-elevation-z4">
+
+  <h1 class="mat-h1">Log in</h1>
+
+  <form [formGroup]="logInForm" (ngSubmit)="onLogIn()">
+
+    <mat-form-field>
+      <mat-label>Email address</mat-label>
+      <input matInput type="email" placeholder="name@example.com" formControlName="email" required>
+      <mat-error *ngIf="logInForm.controls.email.invalid && logInForm.controls.email.touched">Please enter a valid email.</mat-error>
+      <mat-error *ngIf="errorObj.logIn.email">{{errorObj.logIn.email}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+      <mat-error *ngIf="logInForm.controls.password.invalid && logInForm.controls.password.touched">Password length must be greater than 8.</mat-error>
+      <mat-error *ngIf="errorObj.logIn.password">{{errorObj.logIn.password}}</mat-error>
+    </mat-form-field>
+
+    <div class="forgot-password-link">
+      <a href="" (click)="onForgotPassword()">Forgot password?</a>
+    </div>
+
+    <button mat-raised-button color="primary" [disabled]="!logInForm.valid || isBtnClicked" type="submit">
+      <ng-container *ngIf="!isLoggingIn; else spinner">
+        <mat-icon>arrow_right_alt</mat-icon>
+        Log in
+      </ng-container>
+      <ng-template #spinner>
+        <mat-spinner diameter="20"></mat-spinner>
+      </ng-template>
+    </button>
+
+  </form>
+
+  <button mat-raised-button color="primary" (click)="onLogInWithGoogle()" style="margin-bottom: 25px;">
+    <mat-icon>alternate_email</mat-icon>
+    Log in with Google
+  </button>
+
+  <mat-error *ngIf="errorObj.logIn.unknown">{{errorObj.logIn.unknown}}</mat-error>
+
+  <p class="mobile-only">Don't have an account? <a [routerLink]="['/sign-up']">Sign up</a></p>
+
+</main>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "projet-20914": {
+      "hosting": {
+        "restaurant-oms": [
+          "projet-20914"
+        ]
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MealApiService {
-  private baseUrl = 'https://www.themealdb.com/api/json/v1/1';
+  private baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 
   constructor(private http: HttpClient) {}
 
@@ -16,5 +16,8 @@ export class MealApiService {
 
   getMealsByCategory(category: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/filter.php?c=${category}`);
+  }
+  getMealById(mealId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/lookup.php?i=${mealId}`);
   }
 }

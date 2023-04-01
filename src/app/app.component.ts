@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { UserDataService } from './services/user-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

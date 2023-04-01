@@ -13,11 +13,21 @@
     </mat-card-header>
     <mat-card-content>
       <mat-grid-list cols="3" rowHeight="1:1">
-        <mat-grid-tile *ngFor="let meal of mealsByCategory[category.strCategory]">
+        <mat-grid-tile *ngFor="let meal of mealsByCategory[category.strCategory]" class="meal-tile">
           <img [src]="meal.strMealThumb" [alt]="meal.strMeal">
-          <mat-grid-tile-footer>{{meal.strMeal}}</mat-grid-tile-footer>
+          <div class="image-overlay" (click)="showRecipe(meal.idMeal)">
+            <mat-grid-tile-footer>{{meal.strMeal}}</mat-grid-tile-footer>
+          </div>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>
   </mat-card>
+  <!-- Ajoutez cette balise dans category-page.component.html pour afficher les détails de la recette -->
+<div *ngIf="selectedRecipe" class="recipe-details">
+  <h2>{{selectedRecipe.strMeal}}</h2>
+  <img class="image_reduit" [src]="selectedRecipe.strMealThumb" [alt]="selectedRecipe.strMeal">
+  <p><strong>Instructions:</strong> {{selectedRecipe.strInstructions}}</p>
+  <button (click)="selectedRecipe = null">Fermer</button>
+</div>
+
 </div>

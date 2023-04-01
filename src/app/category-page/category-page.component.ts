@@ -9,6 +9,8 @@ import { MealApiService } from '../meal-api.service';
 export class CategoryPageComponent implements OnInit {
   categories: any[] = [];
   mealsByCategory: any = {};
+  selectedRecipe: any = null;
+  instructions: string | null = null;
 
   constructor(private mealApiService: MealApiService) {}
 
@@ -28,4 +30,17 @@ export class CategoryPageComponent implements OnInit {
       categoryElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
+  showRecipe(mealId: string): void {
+    this.mealApiService.getMealById(mealId).subscribe((response: any) => {
+      if (response && response.meals && response.meals.length > 0) {
+        this.selectedRecipe = response.meals[0];
+      } else {
+        this.selectedRecipe ='Aucune recette trouvée pour cet ID de repas.';
+      }
+    });
+
+
+  }
+
 }
+

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 26px;
   padding: 16px;
 }
 
@@ -10,7 +10,18 @@ mat-grid-list {
 }
 
 mat-grid-tile {
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  flex-basis: calc(25% - 16px);
+  margin-right: 96px;
+  margin-bottom: 16px;
+}
+
+mat-grid-tile img {
+  max-width: 100%;
+  height: auto;
+}
+mat-grid-tile:not(:last-child) {
+  margin-right: 16px;
 }
 a {
   text-decoration: none;
@@ -32,7 +43,7 @@ mat-toolbar button {
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 8px 16px;
+  padding: 0px 16px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -41,4 +52,28 @@ mat-toolbar button {
 mat-toolbar button:hover {
   background-color: #3f51b5;
   color: white;
+}
+mat-toolbar-row, mat-toolbar-single-row{
+padding: 30px 16px;
+}
+.recipe-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 1000;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+}
+mat-grid-tile {
+  cursor: pointer;
+}
+.image_reduit{
+  width: 220px;
+  margin-left: 35%;
 }

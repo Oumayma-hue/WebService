@@ -1,6 +1,6 @@
 <main class="form-signin">
 
-  <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+  <h1 class="mat-h1">Sign up</h1>
 
   <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
 
@@ -22,13 +22,15 @@
           <input matInput type="password" placeholder="Password" name="password" formControlName="password">
           <mat-error *ngIf="signUpForm.controls.password.errors != null && signUpForm.controls.password.touched">Password length must be greater than 8.</mat-error>
       </mat-form-field>
-
+<br>
       <button mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid || isBtnClicked || isSignedUp">
           <mat-icon *ngIf="!isSigningUp && !isSignedUp">arrow_right_alt</mat-icon>
           <mat-spinner diameter="20" *ngIf="isSigningUp"></mat-spinner>
           <mat-icon *ngIf="isSignedUp && isBtnClicked" aria-hidden="true">check</mat-icon>
           <span *ngIf="!isSigningUp && !isSignedUp">Sign up</span>
       </button>
+      <br>
+      <br>
 
   </form>
 

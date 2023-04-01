@@ -1,15 +1,15 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBQq6pRpxgDOYsNo3PdNnfI-hiD5g-SBFk',
-    authDomain: 'restaurant-21-club.firebaseapp.com',
-    databaseURL: 'https://restaurant-21-club-default-rtdb.firebaseio.com',
-    projectId: 'restaurant-21-club',
-    storageBucket: 'restaurant-21-club.appspot.com',
-    messagingSenderId: '440699115978',
-    appId: '1:440699115978:web:a26f415abe1f71fc171733',
-    measurementId: 'G-1DCVC2NW3E',
+    apiKey: "AIzaSyC_nqRxbXoIv_A507KsvZG3oErb3x-yYPg",
+    authDomain: "projet-20914.firebaseapp.com",
+    databaseURL: "https://projet-20914-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "projet-20914",
+    storageBucket: "projet-20914.appspot.com",
+    messagingSenderId: "565132241343",
+    appId: "1:565132241343:web:9772f34b5a3b1bc32fd90a",
+    measurementId: "G-EZBMS313VS"
   },
   UNSPLASH_SOURCE_API:
-    'https://source.unsplash.com/1280x900/?restaurants,food,alcohol',
+    'www.themealdb.com/api/json/v1/1',
 };

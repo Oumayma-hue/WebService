@@ -56,7 +56,8 @@ const routes: Routes = [
      NotFoundComponent,
     StartersIconComponent,
     MainsIconComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -77,7 +78,8 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

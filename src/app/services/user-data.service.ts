@@ -20,6 +20,9 @@ export class UserDataService {
     role: {
       val: 'customer',
     },
+    isEmailVerified: false // add this property
+
+
   };
   userDataSub = new BehaviorSubject<User>(this.userData);
   isAdminSub = new BehaviorSubject<any>(null);
@@ -31,10 +34,11 @@ export class UserDataService {
   ) {}
 
   /** saves new user data in Firebase DB */
-  createNewUser(name: string, email: string, uid: string) {
+  createNewUser(name: string, email: string, uid: string, isEmailVerified: boolean) {
     this.userData.name = name;
     this.userData.email = email;
     this.userData.uid = uid;
+    this.userData.isEmailVerified = isEmailVerified; // add isEmailVerified field
 
     this.userObj = this.afdb.object('users/' + this.userData.uid);
     this.userObj.set(this.userData).then(() => {

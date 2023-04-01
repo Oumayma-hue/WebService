@@ -7,4 +7,5 @@ export interface User {
   role: {
     val: string;
   }
+  isEmailVerified: boolean; // add this property
 }

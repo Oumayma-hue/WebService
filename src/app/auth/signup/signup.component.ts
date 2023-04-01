@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
 
     // reset the errorObj
-    // so that previous errors don't come up in view 
+    // so that previous errors don't come up in view
     this.errorObj = {
       logIn: {
         errorFound: null,
@@ -80,42 +80,48 @@ export class SignupComponent implements OnInit, OnDestroy {
   onSignUp() {
     // handle the case when disabled attribute for submit button is deleted
     // from html
-    if (this.signUpForm.invalid) {
-      return;
-    }
+    // handle the case when disabled attribute for submit button is deleted
+  // from html
+  if (this.signUpForm.invalid) {
+    return;
+  }
 
-    this.isBtnClicked = true;
-    this.isSigningUp = true;
+  this.isBtnClicked = true;
+  this.isSigningUp = true;
 
-    this.name = this.signUpForm.get('name').value;
-    this.email = this.signUpForm.get('email').value;
-    this.password = this.signUpForm.get('password').value;
+  this.name = this.signUpForm.get('name').value;
+  this.email = this.signUpForm.get('email').value;
+  this.password = this.signUpForm.get('password').value;
 
-    this.authService
-      .signUp(this.email, this.password)
-      .then((result) => {
-        this.isSignedUp = true;
-        this.isSigningUp = false;
-        this.isHideResponseErrors = true;
+  this.authService
+    .signUp(this.email, this.password)
+    .then((result) => {
+      // Send email verification
+      result.user.sendEmailVerification();
 
-        this.userDataService.createNewUser(
-          this.name,
-          this.email,
-          result.user.uid
-        );
+      this.isSignedUp = true;
+      this.isSigningUp = false;
+      this.isHideResponseErrors = true;
 
-        setTimeout(() => {
-          this.router.navigate(['']);
-        }, 1500);
-      })
-      .catch((error) => {
-        this.isSignedUp = false;
-        this.isSigningUp = false;
-        this.isBtnClicked = false;
-        this.isHideResponseErrors = false;
+      // Create new user with email verification status
+      this.userDataService.createNewUser(
+        this.name,
+        this.email,
+        result.user.uid,
+        false // Email verification status
+      );
 
-        this.authErrorHandler.handleAuthError(error, 'signUp');
-      });
+      // Redirect to email verification page
+      this.router.navigate(['/email-verification']);
+    })
+    .catch((error) => {
+      this.isSignedUp = false;
+      this.isSigningUp = false;
+      this.isBtnClicked = false;
+      this.isHideResponseErrors = false;
+
+      this.authErrorHandler.handleAuthError(error, 'signUp');
+    });
   }
 
   /** on clicking sign up with google */
@@ -128,7 +134,8 @@ export class SignupComponent implements OnInit, OnDestroy {
           this.userDataService.createNewUser(
             result.user.displayName,
             result.user.email,
-            result.user.uid
+            result.user.uid,
+            result.user.isEmailVerified
           );
         }
 

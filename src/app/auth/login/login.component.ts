@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
 
     // reset the errorObj
-    // so that previous errors don't come up in view 
+    // so that previous errors don't come up in view
     this.errorObj = {
       logIn: {
         errorFound: null,
@@ -114,7 +114,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.userDataService.createNewUser(
             result.user.displayName,
             result.user.email,
-            result.user.uid
+            result.user.uid,
+            result.user.isEmailVerified
           );
         }
 
@@ -125,7 +126,20 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authErrorHandler.handleAuthError(error, 'logIn');
       });
   }
+  onForgotPassword(){
+    const email = this.logInForm.get('email').value;
 
+    this.authService.sendPasswordResetEmail(email)
+      .then(() => {
+        // L'email de réinitialisation du mot de passe a été envoyé avec succès
+        alert('Un email de réinitialisation du mot de passe a été envoyé à votre adresse email.');
+      })
+      .catch((error) => {
+        // Une erreur s'est produite lors de l'envoi de l'email de réinitialisation du mot de passe
+        alert('Une erreur s\'est produite lors de l\'envoi de l\'email de réinitialisation du mot de passe. Veuillez réessayer plus tard.');
+        console.log(error);
+      });
+  }
   /** hides error messages on input click */
   hideResponseErrors() {
     if (

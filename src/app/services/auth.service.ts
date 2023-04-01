@@ -59,13 +59,23 @@ export class AuthService {
     return this.afAuth.signInWithPopup(new auth.auth.GoogleAuthProvider());
   }
 
+  sendPasswordResetEmail(email: string): Promise<void> {
+    return this.afAuth.sendPasswordResetEmail(email);
+  }
+
   autoLogIn() {
     if (localStorage.getItem('user') != null) {
       this.setIsAuthenticated(true);
       this.handleLocalStorageService.setIsAuthenticated('true');
     }
   }
-
+  sendVerificationEmail() {
+    return this.afAuth.currentUser.then((user) => {
+      if (user) {
+        return user.sendEmailVerification();
+      }
+    });
+  }
   logOut() {
     this.afAuth.signOut().then(() => {
       this.handleLocalStorageService.clearDataOnLogOut();
